@@ -8,7 +8,7 @@ class Contact extends Component {
 
         this.state = {
             firstname: '',
-            classname: '',
+            lastname: '',
             telnum: '',
             email: '',
             agree: false,
