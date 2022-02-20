@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardText, CardTitle, CardBody } from 'reactstrap';
+import { Card, CardText, CardTitle, CardBody, Button } from 'reactstrap';
 import dateFormat from 'dateformat';
 
 class StaffList extends Component {
@@ -58,6 +58,7 @@ class StaffList extends Component {
                 <div className="my-2">
                     <p>Bấm vào tên nhân viên để xem thông tin</p>
                 </div>
+                <Button>Thay đổi giao diện</Button>
                 <div className="row">
                     <div className="col-12 col-md-5 mt-3">
                         {this.renderStaff(this.state.selectedStaff)}
