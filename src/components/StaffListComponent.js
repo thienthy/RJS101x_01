@@ -43,7 +43,7 @@ class StaffList extends Component {
                 <div key={staff.id} className="col-6 col-md-4 col-lg-2 mt-3">
                     <Card onClick={() => this.onStaffSelect(staff)}>
                         <CardBody>
-                            <CardTitle>{staff.name}</CardTitle>
+                            <CardTitle className="text-center">{staff.name}</CardTitle>
                         </CardBody>
                     </Card>
                 </div>
@@ -51,7 +51,7 @@ class StaffList extends Component {
         });
 
         return (
-            <div classname="container">
+            <div className="container">
                 <div className="row">
                     {staffList}
                 </div>
