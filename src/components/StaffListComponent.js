@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardTitle, CardBody } from 'reactstrap';
+import { Card, CardText, CardTitle, CardBody } from 'reactstrap';
 
 class StaffList extends Component {
     constructor(props) {
@@ -8,6 +8,21 @@ class StaffList extends Component {
         this.state = {
 
         }
+    }
+
+    renderStaff(staff) {
+        return (
+            <Card>
+                <CardBody>
+                    <CardTitle>Họ và tên: {staff.name}</CardTitle>
+                    <CardText>Ngày sinh: {staff.doB}</CardText>
+                    <CardText>Ngày vào công ty: {staff.startDate}</CardText>
+                    <CardText>Phòng ban: {staff.department.name}</CardText>
+                    <CardText>Số ngày nghỉ còn lại: {staff.annualLeave}</CardText>
+                    <CardText>Số ngày đã làm thêm: {staff.overTime}</CardText>
+                </CardBody>
+            </Card>
+        )
     }
 
     render() {
@@ -27,6 +42,12 @@ class StaffList extends Component {
             <div classname="container">
                 <div className="row">
                     {staffList}
+                </div>
+                <div className="my-2">
+                    <p>Bấm vào tên nhân viên để xem thông tin</p>
+                </div>
+                <div className="row">
+
                 </div>
             </div>
         );
