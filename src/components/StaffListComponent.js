@@ -7,12 +7,22 @@ class StaffList extends Component {
         super(props);
 
         this.state = {
-            selectedStaff: null
+            selectedStaff: null,
+            click: false
         }
+        this.handleToggle = this.handleToggle.bind(this);
     }
 
     onStaffSelect(staff) {
-        this.setState({ selectedStaff: staff });
+        this.setState({
+            selectedStaff: staff
+        });
+    }
+
+    handleToggle() {
+        this.setState({
+            click: !this.state.click
+        })
     }
 
     renderStaff(staff) {
@@ -40,7 +50,7 @@ class StaffList extends Component {
     render() {
         const staffList = this.props.staffs.map(staff => {
             return (
-                <div key={staff.id} className="col-6 col-md-4 col-lg-2 mt-3">
+                <div key={staff.id} className={this.state.click ? "col-6 col-sm-4 col-md-2 mt-3" : "col-12 col-sm-6 col-md-4 mt-3"}>
                     <Card onClick={() => this.onStaffSelect(staff)}>
                         <CardBody>
                             <CardTitle className="text-center">{staff.name}</CardTitle>
@@ -58,7 +68,7 @@ class StaffList extends Component {
                 <div className="my-2">
                     <p>Bấm vào tên nhân viên để xem thông tin</p>
                 </div>
-                <Button>Thay đổi giao diện</Button>
+                <Button onClick={this.handleToggle}>Thay đổi giao diện</Button>
                 <div className="row">
                     <div className="col-12 col-md-5 mt-3">
                         {this.renderStaff(this.state.selectedStaff)}
