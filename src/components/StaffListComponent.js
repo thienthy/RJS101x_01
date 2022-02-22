@@ -8,7 +8,7 @@ function RenderStaffList({ staff }) {
         <Card>
             <Link to={`/staff/${staff.id}`}>
                 <CardImg width="100%" src={staff.image} alt={staff.name} />
-                <div class="text-center">
+                <div class="text-center mt-2">
                     <CardTitle>{staff.name}</CardTitle>      
                 </div>     
             </Link>
@@ -50,11 +50,11 @@ class StaffList extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <h3 className="staff">Nhân Viên</h3>
-                        <hr />
+                        <h3 className="staff my-2">Nhân Viên</h3>
+                        <hr className="my-2" />
                     </div>
                 </div>
-                <div className="col-12 col-md-8">
+                <div className="col-12 col-md-8 my-2">
                     <Form onSubmit={this.handleSearch}>
                         <Row className="form-group" >
                             <Col md={10}>
