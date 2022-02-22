@@ -1,24 +1,44 @@
-import React from 'react';
-import { Card, CardImg, CardTitle } from 'reactstrap';
+import React, { Component } from 'react';
+import { Card, CardImg, CardTitle, Form, Row, Input, Col, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
-    function RenderStaffList({ staff }) {
-        return(
-            <Card>
-                <Link to={`/staff/${staff.id}`}>
-                    <CardImg width="100%" src={staff.image} alt={staff.name} />
-                    <div class="text-center">
-                        <CardTitle>{staff.name}</CardTitle>      
-                    </div>     
-                </Link>
-            </Card>
-        );
+function RenderStaffList({ staff }) {
+    return(
+        <Card>
+            <Link to={`/staff/${staff.id}`}>
+                <CardImg width="100%" src={staff.image} alt={staff.name} />
+                <div class="text-center">
+                    <CardTitle>{staff.name}</CardTitle>      
+                </div>     
+            </Link>
+        </Card>
+    );
+}
+
+class StaffList extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            staffs: this.props.staffs,
+            searchName: "",
+        }
+        this.handleSearch = this.handleSearch.bind(this)
     }
 
+    // Tìm kiếm nhân viên
 
-    const StaffList = (props) => {
-        const staffList = props.staffs.map((staff) => {
+    handleSearch(e) {
+        const searchName = this.search.value
+        this.setState({
+            staffs: this.props.staffs.filter(staff => staff.name.toLowerCase().includes(searchName.toLowerCase()))
+        })
+        e.preventDefault()
+    }
+    
+    render() {
+        const staffList = this.state.staffs.map((staff) => {
             return (
                 <div key={staff.id} className="col-12 col-sm-4 col-md-2 my-2">
                     <RenderStaffList staff={staff} />
@@ -32,7 +52,22 @@ import { Link } from 'react-router-dom';
                     <div className="col-12">
                         <h3 className="staff">Nhân Viên</h3>
                         <hr />
-                    </div>   
+                    </div>
+                </div>
+                <div className="col-12 col-md-8">
+                    <Form onSubmit={this.handleSearch}>
+                        <Row className="form-group" >
+                            <Col md={10}>
+                                <Input type="text" name="name" id="name"
+                                    innerRef={input => this.search = input}
+                                    placeholder="Nhập tên nhân viên muốn tìm"
+                                />
+                            </Col>
+                            <Col md={2} >
+                                <Button color="primary" type="submit" >Tìm</Button>
+                            </Col>
+                        </Row>
+                    </Form>
                 </div>
                 <div className="row">
                     {staffList}
@@ -40,6 +75,6 @@ import { Link } from 'react-router-dom';
             </div>
         );
     }
-
+}
 
 export default StaffList;
