@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardTitle, Form, Row, Input, Col, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import AddStaff from './AddStaffComponent';
 
 
 function RenderStaffList({ staff }) {
@@ -51,6 +52,7 @@ class StaffList extends Component {
                 <div className="row">
                     <div className="col-12">
                         <h3 className="staff my-2">Nhân Viên</h3>
+                        <AddStaff />
                         <hr className="my-2" />
                     </div>
                 </div>
