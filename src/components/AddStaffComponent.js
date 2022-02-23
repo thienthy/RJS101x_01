@@ -18,11 +18,21 @@ class AddStaff extends Component {
             overTime: '',
             salary: '',
             image: '/assets/images/user.png',
-            isOpenModal: false
+            isOpenModal: false,
+            touched: {
+                name: false,
+                doB: false,
+                startDate: false,
+                department: false,
+                salaryScale: false,
+                annualLeave: false,
+                overTime: false
+            }
         }
         this.toggleModal = this.toggleModal.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleAddStaff = this.handleAddStaff.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
     }
 
     toggleModal() {
@@ -55,6 +65,12 @@ class AddStaff extends Component {
         this.props.handleAddStaff(newStaff);
     }
 
+    handleBlur = (field) => () => {
+        this.setState({
+            touched: { ...this.state.touched, [field]: true }
+        });
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -71,6 +87,7 @@ class AddStaff extends Component {
                                     <Col md={8}>
                                         <Input type="text" id="name" name="name"
                                             value={this.state.name}
+                                            onBlur={this.handleBlur('name')}
                                             onChange={this.handleInputChange}
                                         />
                                     </Col>
@@ -82,6 +99,7 @@ class AddStaff extends Component {
                                     <Col md={8}>
                                         <Input type="date" id="doB" name="doB"
                                             value={this.state.doB}
+                                            onBlur={this.handleBlur('doB')}
                                             onChange={this.handleInputChange}
                                         />
                                     </Col>
@@ -93,6 +111,7 @@ class AddStaff extends Component {
                                     <Col md={8}>
                                         <Input type="date" id="startDate" name="startDate"
                                             value={this.state.startDate}
+                                            onBlur={this.handleBlur('startDate')}
                                             onChange={this.handleInputChange}
                                         />
                                     </Col>
@@ -104,7 +123,9 @@ class AddStaff extends Component {
                                     <Col md={8}>
                                         <Input type="select" id="department" name="department"
                                             value={this.state.doB} 
-                                            onChange={this.handleInputChange} >
+                                            onBlur={this.handleBlur('department')}
+                                            onChange={this.handleInputChange} 
+                                        >
                                             <option value="" disabled>Select Department</option>
                                             <option value="Dept01">Sale</option>
                                             <option value="Dept02">HR</option>
@@ -121,6 +142,7 @@ class AddStaff extends Component {
                                     <Col md={8}>
                                         <Input type="text" id="salaryScale" name="salaryScale"
                                             value={this.state.salaryScale}
+                                            onBlur={this.handleBlur('salaryScale')}
                                             onChange={this.handleInputChange}
                                         />
                                     </Col>
@@ -132,6 +154,7 @@ class AddStaff extends Component {
                                     <Col md={8}>
                                         <Input type="text" id="annualLeave" name="annualLeave"
                                             value={this.state.annualLeave}
+                                            onBlur={this.handleBlur('annualLeave')}
                                             onChange={this.handleInputChange}
                                         />
                                     </Col>
@@ -143,6 +166,7 @@ class AddStaff extends Component {
                                     <Col md={8}>
                                         <Input type="text" id="overTime" name="overTime"
                                             value={this.state.overTime}
+                                            onBlur={this.handleBlur('overTime')}
                                             onChange={this.handleInputChange}
                                         />
                                     </Col>
