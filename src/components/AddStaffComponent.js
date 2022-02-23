@@ -50,7 +50,17 @@ class AddStaff extends Component {
 
     handleAddStaff(e) {
         e.preventDefault();
-
+        this.setState({
+            touched: { 
+                ...this.state.touched, doB: true, name: true, startDate: true,
+                department: true, salaryScale: true, annualLeave: true, overTime: true
+            }
+        });
+        const errors = this.validate(this.state.name && this.state.doB && this.state.startDate && this.state.department
+            && this.state.salaryScale && this.state.annualLeave && this.state.overTime)
+            if (errors.flag === true) {
+                return
+            } else {
             const newStaff = {
                 id: this.props.staffs.length,
                 name: this.state.name,
@@ -64,7 +74,7 @@ class AddStaff extends Component {
             }
             this.toggleModal();
             this.props.handleAddStaff(newStaff);
-        
+        }
     }
 
     handleBlur = (field) => () => {
@@ -82,8 +92,13 @@ class AddStaff extends Component {
             salaryScale: '',
             annualLeave: '',
             overTime: '',
-
+            flag: false
         };
+
+        if (name === ''|| doB === ''|| startDate === ''|| department === ''||
+            salaryScale === ''|| annualLeave === ''|| overTime === '') {
+                errors.flag = true;
+            }
 
         if (this.state.touched.name && name === '') {
             errors.name = "Bạn chưa nhập tên";
