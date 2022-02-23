@@ -74,6 +74,7 @@ class AddStaff extends Component {
             }
             this.toggleModal();
             this.props.handleAddStaff(newStaff);
+            localStorage.setItem('store', JSON.stringify(newStaff));
         }
     }
 
