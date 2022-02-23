@@ -50,19 +50,21 @@ class AddStaff extends Component {
 
     handleAddStaff(e) {
         e.preventDefault();
-        const newStaff = {
-            id: this.props.staffs.length,
-            name: this.state.name,
-            doB: this.state.doB,
-            salaryScale: this.state.salaryScale,
-            startDate: this.state.startDate,
-            department: DEPARTMENTS.find(department => department.id === this.state.department),
-            annualLeave: this.state.annualLeave,
-            overTime: this.state.overTime,
-            image: this.state.image,
-        }
-        this.toggleModal();
-        this.props.handleAddStaff(newStaff);
+
+            const newStaff = {
+                id: this.props.staffs.length,
+                name: this.state.name,
+                doB: this.state.doB,
+                salaryScale: this.state.salaryScale,
+                startDate: this.state.startDate,
+                department: DEPARTMENTS.find(department => department.id === this.state.department),
+                annualLeave: this.state.annualLeave,
+                overTime: this.state.overTime,
+                image: this.state.image,
+            }
+            this.toggleModal();
+            this.props.handleAddStaff(newStaff);
+        
     }
 
     handleBlur = (field) => () => {
@@ -79,12 +81,13 @@ class AddStaff extends Component {
             department: '',
             salaryScale: '',
             annualLeave: '',
-            overTime: ''
+            overTime: '',
+
         };
 
         if (this.state.touched.name && name === '') {
             errors.name = "Bạn chưa nhập tên";
-        } else if ( this.state.touched.name && name < 3) {
+        } else if ( this.state.touched.name && name.length < 3) {
             errors.name = "Tên phải nhiều hơn 2 kí tự";
         } else if (this.state.touched.name && name.length >= 30) {
             errors.name = "Tên phải ít hơn 30 kí tự";
@@ -96,7 +99,7 @@ class AddStaff extends Component {
 
         if (this.state.touched.startDate && startDate === '') {
             errors.startDate = "Bạn chưa chọn ngày vào làm";
-        } else if (this.state.touched.startDate && startDate > doB) {
+        } else if (this.state.touched.startDate && startDate <= doB) {
             errors.startDate = "Ngày vào làm phải lớn hơn ngày sinh"
         }
 
@@ -122,6 +125,15 @@ class AddStaff extends Component {
         return errors;
     }
     render() {
+        const errors = this.validate(
+            this.state.name,
+            this.state.doB,
+            this.state.startDate,
+            this.state.department,
+            this.state.salaryScale,
+            this.state.annualLeave,
+            this.state.overTime
+        );
         return (
             <React.Fragment>
                 <Button onClick={this.toggleModal} color="primary" className="addButton">
@@ -137,9 +149,12 @@ class AddStaff extends Component {
                                     <Col md={8}>
                                         <Input type="text" id="name" name="name"
                                             value={this.state.name}
+                                            valid={errors.name === ''}
+                                            invalid={errors.name !== ''}
                                             onBlur={this.handleBlur('name')}
                                             onChange={this.handleInputChange}
                                         />
+                                        <FormFeedback>{errors.name}</FormFeedback>
                                     </Col>
                                 </Row>
                             </FormGroup>
@@ -149,9 +164,12 @@ class AddStaff extends Component {
                                     <Col md={8}>
                                         <Input type="date" id="doB" name="doB"
                                             value={this.state.doB}
+                                            valid={errors.doB === ''}
+                                            invalid={errors.doB !== ''}
                                             onBlur={this.handleBlur('doB')}
                                             onChange={this.handleInputChange}
                                         />
+                                        <FormFeedback>{errors.doB}</FormFeedback>
                                     </Col>
                                 </Row>
                             </FormGroup>
@@ -161,9 +179,12 @@ class AddStaff extends Component {
                                     <Col md={8}>
                                         <Input type="date" id="startDate" name="startDate"
                                             value={this.state.startDate}
+                                            valid={errors.startDate === ''}
+                                            invalid={errors.startDate !== ''}
                                             onBlur={this.handleBlur('startDate')}
                                             onChange={this.handleInputChange}
                                         />
+                                        <FormFeedback>{errors.startDate}</FormFeedback>
                                     </Col>
                                 </Row>
                             </FormGroup>
@@ -173,6 +194,8 @@ class AddStaff extends Component {
                                     <Col md={8}>
                                         <Input type="select" id="department" name="department"
                                             value={this.state.doB} 
+                                            valid={errors.department === ''}
+                                            invalid={errors.department !== ''}
                                             onBlur={this.handleBlur('department')}
                                             onChange={this.handleInputChange} 
                                         >
@@ -183,6 +206,7 @@ class AddStaff extends Component {
                                             <option value="Dept04">IT</option>
                                             <option value="Dept05">Finance</option>
                                         </Input>
+                                        <FormFeedback>{errors.department}</FormFeedback>
                                     </Col>
                                 </Row>
                             </FormGroup>
@@ -192,9 +216,12 @@ class AddStaff extends Component {
                                     <Col md={8}>
                                         <Input type="text" id="salaryScale" name="salaryScale"
                                             value={this.state.salaryScale}
+                                            valid={errors.salaryScale === ''}
+                                            invalid={errors.salaryScale !== ''}
                                             onBlur={this.handleBlur('salaryScale')}
                                             onChange={this.handleInputChange}
                                         />
+                                        <FormFeedback>{errors.salaryScale}</FormFeedback>
                                     </Col>
                                 </Row>
                             </FormGroup>
@@ -204,9 +231,12 @@ class AddStaff extends Component {
                                     <Col md={8}>
                                         <Input type="text" id="annualLeave" name="annualLeave"
                                             value={this.state.annualLeave}
+                                            valid={errors.annualLeave === ''}
+                                            invalid={errors.annualLeave !== ''}
                                             onBlur={this.handleBlur('annualLeave')}
                                             onChange={this.handleInputChange}
                                         />
+                                        <FormFeedback>{errors.annualLeave}</FormFeedback>
                                     </Col>
                                 </Row>
                             </FormGroup>
@@ -216,9 +246,12 @@ class AddStaff extends Component {
                                     <Col md={8}>
                                         <Input type="text" id="overTime" name="overTime"
                                             value={this.state.overTime}
+                                            valid={errors.overTime === ''}
+                                            invalid={errors.overTime !== ''}
                                             onBlur={this.handleBlur('overTime')}
                                             onChange={this.handleInputChange}
                                         />
+                                        <FormFeedback>{errors.overTime}</FormFeedback>
                                     </Col>
                                 </Row>
                             </FormGroup>
