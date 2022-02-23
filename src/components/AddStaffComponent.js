@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Input, Label, Modal, ModalHeader, ModalBody,
     Button, Row, Col, Form, FormGroup, FormFeedback } from 'reactstrap';
+import { DEPARTMENTS } from '../shared/staffs';
 
 class AddStaff extends Component {
     constructor(props) {
@@ -45,7 +46,7 @@ class AddStaff extends Component {
             doB: this.state.doB,
             salaryScale: this.state.salaryScale,
             startDate: this.state.startDate,
-            department: this.state.department,
+            department: DEPARTMENTS.find(department => department.id === this.state.department),
             annualLeave: this.state.annualLeave,
             overTime: this.state.overTime,
             image: this.state.image,
