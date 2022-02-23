@@ -5,11 +5,12 @@ import AddStaff from './AddStaffComponent';
 
 
 function RenderStaffList({ staff }) {
+    console.log(staff)
     return(
         <Card>
             <Link to={`/staff/${staff.id}`}>
                 <CardImg width="100%" src={staff.image} alt={staff.name} />
-                <div class="text-center mt-2">
+                <div className="text-center mt-2">
                     <CardTitle>{staff.name}</CardTitle>      
                 </div>     
             </Link>
@@ -37,6 +38,12 @@ class StaffList extends Component {
         })
         e.preventDefault()
     }
+
+    // Callback thêm nhân viên
+
+    handleAddStaff = (staff) => {
+        this.props.handleAddStaff(staff);
+    }
     
     render() {
         const staffList = this.state.staffs.map((staff) => {
@@ -52,7 +59,7 @@ class StaffList extends Component {
                 <div className="row">
                     <div className="col-12">
                         <h3 className="staff my-2">Nhân Viên</h3>
-                        <AddStaff staffs={this.props.staffs} />
+                        <AddStaff staffs={this.props.staffs} handleAddStaff={this.handleAddStaff}/>
                         <hr className="my-2" />
                     </div>
                 </div>
