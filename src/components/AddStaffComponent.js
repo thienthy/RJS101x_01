@@ -71,6 +71,56 @@ class AddStaff extends Component {
         });
     }
 
+    validate(name, doB, startDate, department, salaryScale, annualLeave, overTime) {
+        const errors = {
+            name: '',
+            doB: '',
+            startDate: '',
+            department: '',
+            salaryScale: '',
+            annualLeave: '',
+            overTime: ''
+        };
+
+        if (this.state.touched.name && name === '') {
+            errors.name = "Bạn chưa nhập tên";
+        } else if ( this.state.touched.name && name < 3) {
+            errors.name = "Tên phải nhiều hơn 2 kí tự";
+        } else if (this.state.touched.name && name.length >= 30) {
+            errors.name = "Tên phải ít hơn 30 kí tự";
+        }
+
+        if (this.state.touched.doB && doB === '') {
+            errors.doB = "Bạn chưa chọn ngày tháng năm sinh";
+        }
+
+        if (this.state.touched.startDate && startDate === '') {
+            errors.startDate = "Bạn chưa chọn ngày vào làm";
+        } else if (this.state.touched.startDate && startDate > doB) {
+            errors.startDate = "Ngày vào làm phải lớn hơn ngày sinh"
+        }
+
+        if (this.state.touched.department && department === '') {
+            errors.department = "Bạn chưa chọn bộ phận";
+        }
+
+        if (this.state.touched.salaryScale && salaryScale === '') {
+            errors.salaryScale = "Bạn chưa nhập hệ số lương";
+        }
+        else if (this.state.touched.salaryScale && salaryScale < 1) {
+            errors.salaryScale = "Hệ số lương tối thiểu bằng 1";
+        }
+
+        if (this.state.touched.annualLeave && annualLeave === '') {
+            errors.annualLeave = "Bạn chưa nhập ngày nghỉ phép";
+        }
+
+        if (this.state.touched.overTime && overTime === '') {
+            errors.overTime = "Bạn chưa nhập số ngày tăng ca";
+        }
+
+        return errors;
+    }
     render() {
         return (
             <React.Fragment>
