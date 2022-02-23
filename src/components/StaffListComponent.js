@@ -57,27 +57,27 @@ class StaffList extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-12">
-                        <h3 className="staff my-2">Nhân Viên</h3>
+                    <div className="col-12 col-md-4 mt-3">
+                        <h3 className="staff">Nhân Viên</h3>
                         <AddStaff staffs={this.props.staffs} handleAddStaff={this.handleAddStaff}/>
-                        <hr className="my-2" />
+                    </div>
+                    <div className="col-12 col-md-8 mt-3">
+                        <Form onSubmit={this.handleSearch}>
+                            <Row className="form-group" >
+                                <Col md={10}>
+                                    <Input type="text" name="name" id="name"
+                                        innerRef={input => this.search = input}
+                                        placeholder="Nhập tên nhân viên muốn tìm"
+                                    />
+                                </Col>
+                                <Col md={2} >
+                                    <Button color="primary" type="submit" >Tìm</Button>
+                                </Col>
+                            </Row>
+                        </Form>
                     </div>
                 </div>
-                <div className="col-12 col-md-8 my-2">
-                    <Form onSubmit={this.handleSearch}>
-                        <Row className="form-group" >
-                            <Col md={10}>
-                                <Input type="text" name="name" id="name"
-                                    innerRef={input => this.search = input}
-                                    placeholder="Nhập tên nhân viên muốn tìm"
-                                />
-                            </Col>
-                            <Col md={2} >
-                                <Button color="primary" type="submit" >Tìm</Button>
-                            </Col>
-                        </Row>
-                    </Form>
-                </div>
+                <hr className="mt-0 mb-2" />
                 <div className="row">
                     {staffList}
                 </div>
