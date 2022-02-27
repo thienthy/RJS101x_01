@@ -6,8 +6,8 @@ import StaffDetail from './StaffDetailComponent';
 import Department from './DepartmentComponent';
 import Salary from './SalaryComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
-import { addStaff } from '../redux/ActionCreators';
 import { connect } from 'react-redux';
+import { addStaff } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {

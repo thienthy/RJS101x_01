@@ -8,15 +8,6 @@ class AddStaff extends Component {
         super(props);
 
         this.state = {
-            id: '',
-            name: '',
-            doB: '',
-            salaryScale: '',
-            startDate: '',
-            department: '',
-            annualLeave: '',
-            overTime: '',
-            salary: '',
             image: '/assets/images/user.png',
             isOpenModal: false,
             touched: {
@@ -27,7 +18,9 @@ class AddStaff extends Component {
                 salaryScale: false,
                 annualLeave: false,
                 overTime: false
-            }
+            },
+            staffs: this.props.staffs,
+            departments: this.props.departments
         }
         this.toggleModal = this.toggleModal.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
