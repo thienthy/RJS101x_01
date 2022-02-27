@@ -64,6 +64,16 @@ class AddStaff extends Component {
                                             required, minLength: minLength(3), maxLength: maxLength(30)
                                         }}
                                     />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".startDate"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Yêu cầu nhập',
+                                            minLength: 'Yêu cầu nhập tối thiểu 3 kí tự',
+                                            maxLength: 'Yêu cầu nhập tối đa 30 kí tự'
+                                        }}
+                                    />
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -71,7 +81,17 @@ class AddStaff extends Component {
                                 <Col md={8}>
                                     <Control.text type="date" model=".doB" id="doB"
                                         className="form-control"
-                                        validators={{ required }}
+                                        validators={{
+                                            required
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".doB"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Yêu cầu nhập',
+                                        }}
                                     />
                                 </Col>
                             </Row>
@@ -80,7 +100,17 @@ class AddStaff extends Component {
                                 <Col md={8}>
                                     <Control.text type="date" model=".startDate" id="startDate"
                                         className="form-control"
-                                        validators={{ required }}
+                                        validators={{
+                                            required
+                                        }}
+                                    />
+                                    <Errors 
+                                        className="text-danger"
+                                        model=".startDate"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Yêu cầu nhập',
+                                        }}
                                     />
                                 </Col>
                             </Row>
@@ -89,7 +119,9 @@ class AddStaff extends Component {
                                 <Col md={8}>
                                     <Control.select model=".department" id="department" 
                                         className="form-control"
-                                        validators={{ required }}
+                                        validators={{
+                                            required
+                                        }}
                                     >
                                         <option value="">Select Department</option>
                                         <option value="Dept01">Sale</option>
@@ -98,6 +130,14 @@ class AddStaff extends Component {
                                         <option value="Dept04">IT</option>
                                         <option value="Dept05">Finance</option>
                                     </Control.select>
+                                    <Errors
+                                        className="text-danger"
+                                        model=".department"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Yêu cầu chọn phòng ban',
+                                        }}
+                                    />
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -105,7 +145,18 @@ class AddStaff extends Component {
                                 <Col md={8}>
                                     <Control.text model=".salaryScale" id="salaryScale"
                                         className="form-control"
-                                        validators={{ required }}
+                                        validators={{
+                                            required, isNumber 
+                                        }}
+                                    />
+                                    <Errors 
+                                        className="text-danger"
+                                        model=".salaryScale"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Yêu cầu nhập ',
+                                            isNumber: 'Bạn phải nhập số'
+                                        }}
                                     />
                                 </Col>
                             </Row>
@@ -114,7 +165,17 @@ class AddStaff extends Component {
                                 <Col md={8}>
                                     <Control.text model=".annualLeave" id="annualLeave"
                                         className="form-control"
-                                        validators={{ required }}
+                                        validators={{
+                                            required, isNumber
+                                        }} />
+                                    <Errors 
+                                        className="text-danger"
+                                        model=".annualLeave"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Yêu cầu nhập ',
+                                            isNumber: 'Bạn phải nhập số'
+                                        }}
                                     />
                                 </Col>
                             </Row>
@@ -123,7 +184,17 @@ class AddStaff extends Component {
                                 <Col md={8}>
                                     <Control.text model=".overTime" id="overTime"
                                         className="form-control"
-                                        validators={{ required }}
+                                        validators={{
+                                            required, isNumber
+                                        }} />
+                                    <Errors 
+                                        className="text-danger"
+                                        model=".overTime"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Yêu cầu nhập ',
+                                            isNumber: 'Bạn phải nhập số'
+                                        }}
                                     />
                                 </Col>
                             </Row>
