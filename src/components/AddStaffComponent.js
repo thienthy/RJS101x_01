@@ -21,17 +21,17 @@ class AddStaff extends Component {
         this.setState({ isOpenModal: !this.state.isOpenModal });
     }
 
-    handleAddStaff(e) {
+    handleAddStaff(value) {
 
         const newStaff = {
             id: this.props.staffs.length,
-            name: this.state.name,
-            doB: this.state.doB,
-            salaryScale: this.state.salaryScale,
-            startDate: this.state.startDate,
-            department: DEPARTMENTS.find(department => department.id === this.state.department),
-            annualLeave: this.state.annualLeave,
-            overTime: this.state.overTime,
+            name: value.name,
+            doB: value.doB,
+            salaryScale: +value.salaryScale,
+            startDate: value.startDate,
+            department: DEPARTMENTS.find(department => department.id === value.department),
+            annualLeave: +value.annualLeave,
+            overTime: +value.overTime,
             image: this.state.image,
         }
         this.toggleModal();
@@ -61,7 +61,7 @@ class AddStaff extends Component {
                             <Row className="form-group">
                                 <Label htmlFor="doB" md={4}>Ngày sinh</Label>
                                 <Col md={8}>
-                                    <Control.text model=".doB" id="doB"
+                                    <Control.text type="date" model=".doB" id="doB"
                                         className="form-control"
                                     />
                                 </Col>
@@ -69,7 +69,7 @@ class AddStaff extends Component {
                             <Row className="form-group">
                                 <Label htmlFor="startDate" md={4}>Ngày vào công ty</Label>
                                 <Col md={8}>
-                                    <Control.text model=".startDate" id="startDate"
+                                    <Control.text type="date" model=".startDate" id="startDate"
                                         className="form-control"
                                     />
                                 </Col>
