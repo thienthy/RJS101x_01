@@ -3,6 +3,11 @@ import { Label, Modal, ModalHeader, ModalBody, Button, Row, Col } from 'reactstr
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { DEPARTMENTS } from '../shared/staffs';
 
+const required = (val) => val && val.length;
+const maxLength = (len) => val => !val || val.length <= len;
+const minLength = (len) => val => !val || val.length >= len;
+const isNumber = (val) => !isNaN(Number(val));
+
 class AddStaff extends Component {
     constructor(props) {
         super(props);
@@ -55,6 +60,9 @@ class AddStaff extends Component {
                                 <Col md={8}>
                                     <Control.text model=".name" id="name"
                                         className="form-control"
+                                        validators={{
+                                            required, minLength: minLength(3), maxLength: maxLength(30)
+                                        }}
                                     />
                                 </Col>
                             </Row>
@@ -63,6 +71,7 @@ class AddStaff extends Component {
                                 <Col md={8}>
                                     <Control.text type="date" model=".doB" id="doB"
                                         className="form-control"
+                                        validators={{ required }}
                                     />
                                 </Col>
                             </Row>
@@ -71,13 +80,17 @@ class AddStaff extends Component {
                                 <Col md={8}>
                                     <Control.text type="date" model=".startDate" id="startDate"
                                         className="form-control"
+                                        validators={{ required }}
                                     />
                                 </Col>
                             </Row>
                             <Row className="form-group">
                                 <Label htmlFor="department" md={4}>Phòng ban</Label>
                                 <Col md={8}>
-                                    <Control.select model=".department" id="department" className="form-control">
+                                    <Control.select model=".department" id="department" 
+                                        className="form-control"
+                                        validators={{ required }}
+                                    >
                                         <option value="">Select Department</option>
                                         <option value="Dept01">Sale</option>
                                         <option value="Dept02">HR</option>
@@ -92,6 +105,7 @@ class AddStaff extends Component {
                                 <Col md={8}>
                                     <Control.text model=".salaryScale" id="salaryScale"
                                         className="form-control"
+                                        validators={{ required }}
                                     />
                                 </Col>
                             </Row>
@@ -100,6 +114,7 @@ class AddStaff extends Component {
                                 <Col md={8}>
                                     <Control.text model=".annualLeave" id="annualLeave"
                                         className="form-control"
+                                        validators={{ required }}
                                     />
                                 </Col>
                             </Row>
@@ -108,6 +123,7 @@ class AddStaff extends Component {
                                 <Col md={8}>
                                     <Control.text model=".overTime" id="overTime"
                                         className="form-control"
+                                        validators={{ required }}
                                     />
                                 </Col>
                             </Row>
