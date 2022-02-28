@@ -70,3 +70,8 @@ address{
     margin-left: 8px;
 }
 
+.inputSearch {
+    display: inline-block;
+    width: 80%;
+    padding-right: 8px;
+}

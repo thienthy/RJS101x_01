@@ -12,7 +12,8 @@ import { addStaff, fetchStaffs, fetchDepartments, fetchSalary } from '../redux/A
 const mapStateToProps = state => {
     return {
         staffs: state.staffs,
-        departments: state.departments
+        departments: state.departments,
+        salary: state.salary
     }
 }
 
