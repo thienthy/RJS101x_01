@@ -40,6 +40,70 @@ export const postStaff = (staffPost) => (dispatch) => {
     })
 }
 
+// edit Staff
+
+export const editStaff = (staffEdit) => (dispatch) => {
+
+    return fetch(baseUrl + 'staffs', {
+        method: 'PATCH',
+        body: JSON.stringify(staffEdit),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => {
+            if (response.ok) {
+                return response;
+            } else {
+                var error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        }, error => {
+            var errMess = new Error(error.message)
+            throw errMess
+        }
+        )
+        .then(response => response.json())
+        .then(response => dispatch(updateStaffs(response)))
+        .catch(error => {
+            console.log('Post Staff', error.message);
+            alert(`Your staff cant be edit Error:${error.message}`)
+        })
+}
+
+
+// delete Staff
+export const deleteStaff = (id) => dispatch => {
+
+    return fetch(baseUrl + `staffs/${id}`, {
+        method: 'DELETE',
+    })
+        .then(response => {
+            if (response.ok) {
+                return response;
+            } else {
+                var error = new Error(`Error ${response.status}`);
+                error.response = response;
+                throw error;
+            }
+        }, error => {
+            var errMess = new Error(error.message);
+            throw errMess;
+        })
+        .then(response => {
+            console.log(response);
+            var json = response.json();
+            console.log(json);
+            return json;
+        })
+        .then(response => dispatch(updateStaffs(response)))
+        .catch(error => {
+            console.log(error.message)
+            alert(error.message)
+        })
+}
+
 // fetch Staff
 
 export const fetchStaffs = () => (dispatch) => {
