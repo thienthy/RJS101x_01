@@ -11,21 +11,21 @@ import { Link } from 'react-router-dom';
         }
 
         if(sortData === "idAscending") {
-            props.staffs.sort((a,b) => {
+            props.staffs.staffs.sort((a,b) => {
                 return(
                     a.id - b.id
                 );
             });
         }
         if(sortData === "idDescending") {
-            props.staffs.sort((a,b) => {
+            props.staffs.staffs.sort((a,b) => {
                 return(
                     b.id - a.id
                 );
             });
         }
         if(sortData === "salaryAscending") {
-            props.staffs.sort((a,b) => {
+            props.staffs.staffs.sort((a,b) => {
                 return(
                     (a.salaryScale * basicSalary + a.overTime * overTimeSalary) -
                     (b.salaryScale * basicSalary + b.overTime * overTimeSalary)
@@ -33,7 +33,7 @@ import { Link } from 'react-router-dom';
             });
         }
         if(sortData === "salaryDescending") {
-            props.staffs.sort((a,b) => {
+            props.staffs.staffs.sort((a,b) => {
                 return(
                     (b.salaryScale * basicSalary + b.overTime * overTimeSalary) -
                     (a.salaryScale * basicSalary + a.overTime * overTimeSalary)
@@ -41,7 +41,7 @@ import { Link } from 'react-router-dom';
             });
         }
 
-        const staffSalary = props.staffs.map((staff) => {
+        const staffSalary = props.staffs.staffs.map((staff) => {
             const salary = parseInt(((staff.salaryScale * basicSalary) + (staff.overTime * overTimeSalary)),10);            
             return (
                 <div key={staff.id} className="col-12 col-md-6 col-lg-4 my-2">
