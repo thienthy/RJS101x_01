@@ -48,37 +48,37 @@ export const addStaffs = (staffs) => ({
 
 // fetch Department
 
-const fetchDepartments = () => (dispatch) => {
+export const fetchDepartments = () => (dispatch) => {
 
-    dispatch(departmentsLoading(true))
+    dispatch(departmentsLoading(true));
 
     return fetch(baseUrl + 'departments')
         .then(response => {
-            if(response.ok) {
+            if (response.ok) {
                 return response;
             }
             else {
-                var error = new Error(`Error ${response.status} : ${response.statusText}`)
-                error.message = response;
-                throw error
+                var error = new Error(`Error ${response.status} : ${response.statusText}`);
+                error.response = response;
+                throw error;
             }
         },
         error => {
-            var errMess = new Error(error.message)
-            throw errMess
+            var errMess = new Error(error.message);
+            throw errMess;
         })
-        .then(response => response.json)
+        .then(response => response.json())
         .then(departments => dispatch(addDepartments(departments)))
-        .catch(error => dispatch(departmentsFailed(error.message)))
+        .catch(error => dispatch(departmentsFailed(error.message)));
 }
 
 export const departmentsLoading = () => ({
     type: ActionTypes.DEPARTMENTS_LOADING
-})
+});
 
-export const departmentsFailed = (errMess) => ({
+export const departmentsFailed = (errmess) => ({
     type: ActionTypes.DEPARTMENTS_FAILED,
-    payload: errMess
+    payload: errmess
 })
 
 export const addDepartments = (departments) => ({

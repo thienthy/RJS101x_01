@@ -46,7 +46,7 @@ class StaffList extends Component {
     }
     
     render() {
-        const staffList = this.state.staffs.map((staff) => {
+        const staffList = this.props.staffs.staffs.map((staff) => {
             return (
                 <div key={staff.id} className="col-12 col-sm-4 col-md-2 my-2">
                     <RenderStaffList staff={staff} />

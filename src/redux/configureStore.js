@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { Staffs } from './staffs';
-import { Departments } from './departments';
-import { Salary } from './salary';
+import { Staffs } from './Staffs';
+import { Departments } from './Departments';
+import { Salary } from './Salary';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
