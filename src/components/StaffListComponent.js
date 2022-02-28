@@ -20,7 +20,6 @@ function RenderStaffList({ staff }) {
 }
 
 const StaffList = (props) => {
-    console.log(props)
 
     // Tìm kiếm nhân viên
     
@@ -47,18 +46,20 @@ const StaffList = (props) => {
 
     const SearchBar = () => {
         return (
-            <div className="col-12 col-md-8">
+            <div className="col-12 col-md-8 mt-3">
                 <Form>
-                    <FormGroup row className="inputSearch">
-                        <Col>
+                    <FormGroup row className="form-group">
+                        <Col md={10}>
                             <Input type="text" id="name" name="name"
                                 value={searchInput}
                                 className="form-control"
                                 placeholder="Nhập tên nhân viên muốn tìm"
                                 onChange = {(e) => setSearchInput(e.target.value)} />
                         </Col>
+                        <Col md={2}>
+                            <Button type="submit" color="primary" onClick={(event) => handleSearch(event)}>Tìm</Button>
+                        </Col>
                     </FormGroup>
-                    <Button type="submit" color="primary" onClick={(event) => handleSearch(event)}>Tìm</Button>
                 </Form>
             </div>
         )
@@ -95,17 +96,17 @@ const StaffList = (props) => {
     else {
         return (
             <div className="container">
-                <div className="row staff-info">
-                    <div className="col-12 col-md-4">
+                <div className="row">
+                    <div className="col-12 col-md-4 mt-3">
                         <h3 className="staff">Nhân Viên</h3>
                         <AddStaff 
                             staffs={props.staffs.staffs}
                             handleAddStaff={props.handleAddStaff} 
                         />
-                        <hr />
                     </div>
                     <SearchBar />
                 </div>
+                <hr className="mt-0 mb-2"/>
                 <div className="row">
                     {searchStaff ? <SearchStaff staff={searchStaff} /> : staffList}
                 </div>
