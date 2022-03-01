@@ -3,19 +3,24 @@ import { Card, CardImg, CardTitle, Form, FormGroup, Input, Col, Button } from 'r
 import { Link } from 'react-router-dom';
 import AddStaff from './AddStaffComponent';
 import { Loading } from './LoadingComponent';
-
+import { FadeTransform } from 'react-animation-components';
 
 function RenderStaffList({ staff }) {
     console.log(staff)
     return(
-        <Card>
-            <Link to={`/staff/${staff.id}`}>
-                <CardImg width="100%" src="/assets/images/user.png" alt={staff.name} />
-                <div className="text-center mt-2">
-                    <CardTitle>{staff.name}</CardTitle>      
-                </div>     
-            </Link>
-        </Card>
+        <FadeTransform in
+            transformProps={{
+                exitTransform: 'scale(0.5) translateY(50%)'
+            }}>
+            <Card>
+                <Link to={`/staff/${staff.id}`}>
+                    <CardImg width="100%" src="/assets/images/user.png" alt={staff.name} />
+                    <div className="text-center mt-2">
+                        <CardTitle>{staff.name}</CardTitle>      
+                    </div>     
+                </Link>
+            </Card>
+        </FadeTransform>
     );
 }
 

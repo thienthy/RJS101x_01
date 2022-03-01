@@ -9,12 +9,8 @@ const maxLength = (len) => val => !val || val.length <= len;
 const minLength = (len) => val => !val || val.length >= len;
 const isNumber = (val) => !isNaN(Number(val));
 
-const mapStateToProps = (state) => ({
-
-})
-
 const mapDispatchToProps = (dispatch) => ({
-    postStaff: (staffPost) => dispatch(postStaff(staffPost)),
+    postStaff: (addStaff) => dispatch(postStaff(addStaff)),
     fetchStaffs: () => dispatch(fetchStaffs())
 })
 
@@ -38,7 +34,7 @@ class AddStaff extends Component {
 
     handleAddStaff(value) {
         const salary = parseInt(((value.salaryScale * 3000000) + (value.overTime * 200000)),10);
-        const staffPost = {
+        const addStaff = {
             id: this.props.staffs.length,
             name: value.name,
             doB: value.doB,
@@ -51,7 +47,7 @@ class AddStaff extends Component {
             image: this.state.image,
         }
         this.toggleModal();
-        this.props.postStaff(staffPost);
+        this.props.postStaff(addStaff);
         this.props.fetchStaffs();
     }
 
@@ -65,7 +61,7 @@ class AddStaff extends Component {
                 <Modal isOpen={this.state.isOpenModal} toggle={this.toggleModal}>
                 <ModalHeader toggle={this.toggleModal}>Thêm nhân viên</ModalHeader>
                     <ModalBody>
-                        <LocalForm onSubmit={this.handleAddStaff}>
+                        <LocalForm onSubmit={values => this.handleAddStaff(values)}>
                             <Row className="form-group">
                                 <Label htmlFor="name" md={4}>Họ và tên</Label>
                                 <Col md={8}>
@@ -218,4 +214,4 @@ class AddStaff extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddStaff);
+export default connect(null, mapDispatchToProps)(AddStaff);

@@ -42,7 +42,7 @@ import { Link } from 'react-router-dom';
         }
 
         const staffSalary = props.staffs.staffs.map((staff) => {
-            const salary = parseInt(((staff.salaryScale * basicSalary) + (staff.overTime * overTimeSalary)),10);            
+            const salary = parseInt(((staff.salaryScale * basicSalary) + (staff.overTime * overTimeSalary)),10);
             return (
                 <div key={staff.id} className="col-12 col-md-6 col-lg-4 my-2">
                     <Card className="margin-salary">
