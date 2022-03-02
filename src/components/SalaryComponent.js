@@ -72,7 +72,7 @@ import { Link } from 'react-router-dom';
                         value={sortData}
                         onChange={handleSort}
                     >
-                        <option selected disabled value='idAscending'>Sort</option>
+                        <option disabled value='idAscending'>Sort</option>
                         <option value='idAscending'>ID up</option>
                         <option value='idDescending'>Id down</option>
                         <option value='salaryAscending'>Salary Up</option>
