@@ -13,8 +13,8 @@ const maxLength = (len) => val => !val || val.length <= len;
 const minLength = (len) => val => !val || val.length >= len;
 
 const mapDispatchToProps = (dispatch) => ({
-    editStaff: (staffEdit) => { dispatch(editStaff(staffEdit)) },
-    deleteStaff: (id) => { dispatch(deleteStaff(id)) }
+    editStaff: (staffEdit) => dispatch(editStaff(staffEdit)),
+    deleteStaff: (id) => dispatch(deleteStaff(id))
 })
 
 function RenderStaff({ staff, departmentName, editStaff, deleteStaff }) {
@@ -24,7 +24,7 @@ function RenderStaff({ staff, departmentName, editStaff, deleteStaff }) {
     deleteStaff(staff.id);
   }
   
-  return( staff ?
+  return(
     <div className="container">
         <div className="row">
             <div className="col-12 col-md-4 col-lg-3">
@@ -61,7 +61,7 @@ function RenderStaff({ staff, departmentName, editStaff, deleteStaff }) {
             staff={staff}
             editStaff={editStaff}
         />
-    </div> : null            
+    </div>
   );
 }
 
@@ -84,7 +84,6 @@ function ModalEdit({ isOpen, setOpen, editStaff, staff }) {
       overTime: +value.overTime
     };
     editStaff(staffEdit);
-
   }
   
   //UI modal
