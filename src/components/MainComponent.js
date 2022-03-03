@@ -36,21 +36,17 @@ class Main extends Component {
 
     render() {
 
-        const StaffWithId = ({match}) => {
-            const staff = this.props.staffs.staffs.filter((staff) => staff.id === parseInt(match.params.staffId,10))[0]
-            let departmentName
-            if (staff) {
-                departmentName = this.props.departments.departments.find((department) => department.id === staff.departmentId)
+        const StaffWithId = ({ match }) => {
+            const staff = this.props.staffs.staffs.filter((staff) => staff.id === parseInt(match.params.staffId, 10))[0]
+                if (staff) {
+                    return(
+                        <StaffDetail staff={staff}
+                            departmentName = {this.props.departments.departments.find((department) => department.id === staff.departmentId)}
+                        />
+                    );
+                }
+                return <div>Staff is deleted</div>;
             }
-            if (departmentName) {
-                return(
-                    <StaffDetail staff={staff}
-                        departmentName={departmentName}
-                    />
-                );
-            }
-            return <div>Staff is deleted</div>;
-        }
 
         const DepartmentWithId = ({match}) => {
             return (
