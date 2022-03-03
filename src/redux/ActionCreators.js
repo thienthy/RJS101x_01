@@ -91,12 +91,7 @@ export const deleteStaff = (id) => dispatch => {
             var errMess = new Error(error.message);
             throw errMess;
         })
-        .then(response => {
-            console.log(response);
-            var json = response.json();
-            console.log(json);
-            return json;
-        })
+        .then(response => response.json())
         .then(response => dispatch(updateStaffs(response)))
         .catch(error => {
             console.log(error.message)
