@@ -92,11 +92,11 @@ function ModalEdit({ isOpen, setOpen, editStaff, staff }) {
     <Modal isOpen={isOpen} toggle={() => setOpen(!isOpen)} >
       <ModalHeader>Chỉnh sửa thông tin</ModalHeader>
       <ModalBody >
-        <LocalForm onSubmit={values => handleSubmit(values)} model="staff" initialState={staff}>
+        <LocalForm onSubmit={values => handleSubmit(values)} initialState={staff}>
           <Row className="form-group">
             <Label htmlFor="name" md={4}>Tên</Label>
             <Col md={8} >
-              <Control model="staff.name"
+              <Control model=".name"
                 className="form-control"
                 validators={{
                   required, maxLength: maxLength(30), minLength: minLength(3)
@@ -104,7 +104,7 @@ function ModalEdit({ isOpen, setOpen, editStaff, staff }) {
               />
               <Errors
                 className='text-danger'
-                model="staff.name"
+                model=".name"
                 messages={{
                   required: "Yêu cầu nhập",
                   maxLength: "Yêu cầu nhập tối đa 30 kí tự ",
@@ -116,7 +116,7 @@ function ModalEdit({ isOpen, setOpen, editStaff, staff }) {
           <Row className="form-group">
             <Label htmlFor="doB" md={4}>Ngày sinh</Label>
             <Col md={8} >
-              <Control type="date" model="staff.doB" name="doB"
+              <Control type="date" model=".doB" name="doB"
                 className="form-control"
                 validators={{
                   required
@@ -124,7 +124,7 @@ function ModalEdit({ isOpen, setOpen, editStaff, staff }) {
               />
               <Errors
                 className="text-danger"
-                model="staff.doB"
+                model=".doB"
                 messages={{
                   required: "Yêu cầu nhập"
                 }}
@@ -134,7 +134,7 @@ function ModalEdit({ isOpen, setOpen, editStaff, staff }) {
           <Row className="form-group">
             <Label htmlFor="startDate" md={4}>Ngày vào công ty</Label>
             <Col md={8} >
-              <Control type="date" model="staff.startDate" name="startDate"
+              <Control type="date" model=".startDate" name="startDate"
                 className="form-control"
                 validators={{
                   required
@@ -142,7 +142,7 @@ function ModalEdit({ isOpen, setOpen, editStaff, staff }) {
               />
               <Errors
                 className='text-danger'
-                model="staff.startDate"
+                model=".startDate"
                 messages={{
                   required: "Yêu cầu nhập"
                 }}
@@ -152,7 +152,7 @@ function ModalEdit({ isOpen, setOpen, editStaff, staff }) {
           <Row className="form-group">
             <Label htmlFor="departments" md={4}>Phòng ban</Label>
             <Col md={8} >
-              <select model="staff.departmentId" className="form-control" >
+              <select model=".departmentId" className="form-control" >
                 <option value="Dept01">Sale</option>
                 <option value="Dept02">HR</option>
                 <option value="Dept03">Marketing</option>
@@ -165,7 +165,7 @@ function ModalEdit({ isOpen, setOpen, editStaff, staff }) {
             <Label htmlFor="salaryScale" md={4}>Hệ số lương</Label>
             <Col md={8} >
               <Control
-                type="number" model="staff.salaryScale" name="salaryScale"
+                type="number" model=".salaryScale" name="salaryScale"
                 className="form-control"
               />
             </Col>

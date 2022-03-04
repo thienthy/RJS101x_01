@@ -185,7 +185,7 @@ export const fetchSalary = () => (dispatch) => {
 
     dispatch(salaryLoading(true));
 
-    return fetch(baseUrl + 'salary')
+    return fetch(baseUrl + 'staffsSalary')
         .then(response => {
             if(response.ok) {
                 return response;

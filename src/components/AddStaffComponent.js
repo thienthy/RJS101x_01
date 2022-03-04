@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Label, Modal, ModalHeader, ModalBody, Button, Row, Col } from 'reactstrap';
 import { Control, LocalForm, Errors } from 'react-redux-form';
-import { postStaff, fetchStaffs } from '../redux/ActionCreators';
+import { postStaff } from '../redux/ActionCreators';
 import { connect } from 'react-redux';
 
 const required = (val) => val && val.length;
@@ -11,7 +11,6 @@ const isNumber = (val) => !isNaN(Number(val));
 
 const mapDispatchToProps = (dispatch) => ({
     postStaff: (addStaff) => dispatch(postStaff(addStaff)),
-    fetchStaffs: () => dispatch(fetchStaffs())
 })
 
 class AddStaff extends Component {
@@ -48,7 +47,6 @@ class AddStaff extends Component {
         }
         this.toggleModal();
         this.props.postStaff(addStaff);
-        this.props.fetchStaffs();
     }
 
     render() {
